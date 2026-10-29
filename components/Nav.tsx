@@ -14,6 +14,8 @@ export default function Nav() {
     return false
   }
 
+  const ariaCurrent = (href: string) => (isActive(href) ? 'page' : undefined)
+
   const navLinkClass = (href: string) =>
     `text-sm no-underline transition-colors ${
       isActive(href) ? 'text-ink font-semibold' : 'text-secondary hover:text-ink'
@@ -31,10 +33,10 @@ export default function Nav() {
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
-          <Link href="/case-studies" className={navLinkClass('/case-studies')}>
+          <Link href="/case-studies" className={navLinkClass('/case-studies')} aria-current={ariaCurrent('/case-studies')}>
             Case Studies
           </Link>
-          <Link href="/about" className={navLinkClass('/about')}>
+          <Link href="/about" className={navLinkClass('/about')} aria-current={ariaCurrent('/about')}>
             About
           </Link>
           <div className="flex items-center gap-4 ml-4 pl-4 border-l border-rule">
@@ -89,10 +91,10 @@ export default function Nav() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden border-t border-rule px-6 py-4 flex flex-col gap-1">
-          <Link href="/case-studies" className={`${navLinkClass('/case-studies')} py-2 focus-visible:text-ink`} onClick={() => setMenuOpen(false)}>
+          <Link href="/case-studies" className={`${navLinkClass('/case-studies')} py-2 focus-visible:text-ink`} aria-current={ariaCurrent('/case-studies')} onClick={() => setMenuOpen(false)}>
             Case Studies
           </Link>
-          <Link href="/about" className={`${navLinkClass('/about')} py-2 focus-visible:text-ink`} onClick={() => setMenuOpen(false)}>
+          <Link href="/about" className={`${navLinkClass('/about')} py-2 focus-visible:text-ink`} aria-current={ariaCurrent('/about')} onClick={() => setMenuOpen(false)}>
             About
           </Link>
           <div className="flex items-center gap-4 pt-2 border-t border-rule">
